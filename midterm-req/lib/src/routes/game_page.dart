@@ -148,6 +148,7 @@ class GamePage extends Component
 
   void gameOver() {
     new_highscore();
+    hscore.put("current_score", score);
     game.router.pushNamed("game-over");
     player.pause();
     _bgimg!.removeFromParent();

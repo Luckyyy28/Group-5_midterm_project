@@ -41,17 +41,20 @@ class GameOverPage extends Component
     with TapCallbacks, HasGameReference<MainRouterGame> {
 
   TextComponent? _textComponent;
+  late int score;
   late int highscore;
 
   @override
   Future<void> onMount() async {
       super.onMount();
+    //score = hscore.get("score");
     highscore = hscore.get("highscore");
+    score = hscore.get("current_score");
     final game = findGame()!;
  
     addAll([
       _textComponent = TextComponent(
-        text: 'Game Over\nHigh Score: $highscore',
+        text: 'Game Over\nScore: $score\nHigh Score: $highscore',
         position: game.canvasSize / 2,
         anchor: Anchor.center,
         children: [
@@ -83,5 +86,6 @@ class GameOverPage extends Component
     ..pop() .. pop()
       ..pushNamed("home");
       remove(_textComponent!);
+      //hscore.delete("score");
   }
 }
